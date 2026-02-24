@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
+  resources :schedules
   root "schedules#index"
-
-  resources :schedules, except: [:show]
-end
+end 

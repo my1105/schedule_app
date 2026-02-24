@@ -1,19 +1,39 @@
-<h1>スケジュール一覧</h1>
+<h1>予定一覧</h1>
 
-<%= link_to "新規作成", new_schedule_path %>
+<p>本日の日付: <%= l(@today, format: :default) %></p>
+<p>予定の合計数: <%= @schedules.count %></p>
 
-<ul>
-  <% @schedules.each do |schedule| %>
-    <li>
-      <strong><%= schedule.title %></strong>
-      (<%= schedule.start_at %> 〜 <%= schedule.end_at %>)
 
-      <%= link_to "編集", edit_schedule_path(schedule) %>
+<table border="1">
+  <thead>
+    <tr>
+      <th>タイトル</th>
+      <th>開始日</th>
+      <th>終了日</th>
+      <th>終日</th>
+      <th>更新日時</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @schedules.each do |schedule| %>
+      <tr>
+        <td><%= schedule.title %></td>
+        <td><%= l(schedule.start_at.to_date) %></td>
+        <td><%= l(schedule.end_at.to_date) %></td>
+        <td><%= schedule.all_day ? "○" : "" %></td>
+        <td><%= l(schedule.updated_at) %></td>
+        <td>
+          <%= link_to "詳細", schedule_path(schedule), class: "btn btn-ghost" %>
+          <%= link_to "編集", edit_schedule_path(schedule), class: "btn btn-primary" %>
 
-      <%= button_to "削除",
-        schedule_path(schedule),
-        method: :delete,
-        data: { confirm: "本当に削除しますか？" } %>
-    </li>
-  <% end %>
-</ul>
+          <%= button_to "削除",
+                schedule_path(schedule),
+                method: :delete,
+                class: "btn btn-danger",
+                form_class: "form-inline" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
