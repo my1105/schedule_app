@@ -1,0 +1,19 @@
+<h1>スケジュール一覧</h1>
+
+<%= link_to "新規作成", new_schedule_path %>
+
+<ul>
+  <% @schedules.each do |schedule| %>
+    <li>
+      <strong><%= schedule.title %></strong>
+      (<%= schedule.start_at %> 〜 <%= schedule.end_at %>)
+
+      <%= link_to "編集", edit_schedule_path(schedule) %>
+
+      <%= button_to "削除",
+        schedule_path(schedule),
+        method: :delete,
+        data: { confirm: "本当に削除しますか？" } %>
+    </li>
+  <% end %>
+</ul>
