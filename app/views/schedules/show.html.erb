@@ -1,0 +1,14 @@
+<h1>予定詳細</h1>
+
+<div class="card">
+  <p><strong>タイトル:</strong> <%= @schedule.title %></p>
+  <p><strong>開始日:</strong> <%= l(@schedule.start_at.to_date) %></p>
+  <p><strong>終了日:</strong> <%= l(@schedule.end_at.to_date) %></p>
+  <p><strong>終日:</strong> <%= @schedule.all_day ? "○" : "" %></p>
+  <p><strong>メモ:</strong><br><%= @schedule.memo %></p>
+</div>
+
+<br>
+
+<%= link_to "一覧へ戻る", schedules_path, class: "btn btn-ghost" %>
+<%= link_to "編集", edit_schedule_path(@schedule), class: "btn btn-primary" %>

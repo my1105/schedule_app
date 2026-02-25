@@ -1,22 +1,31 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Schedule App" %></title>
+    <title>ScheduleApp</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="apple-mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= yield :head %>
-
-    <link rel="manifest" href="/manifest.json">
-    <link rel="icon" href="/icon.png" type="image/png">
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/icon.png">
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
   </head>
 
   <body>
-    <%= yield %>
+    <header class="app-header">
+      <div class="container">
+        <h1 class="app-title"><%= link_to "Schedule App", root_path, class: "app-title__link" %></h1>
+        <nav class="app-nav">
+          <%= link_to "新規作成", new_schedule_path, class: "btn btn-primary" %>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <% flash.each do |type, message| %>
+        <div class="flash <%= type %>"><%= message %></div>
+      <% end %>
+
+      <%= yield %>
+    </main>
   </body>
 </html>

@@ -1,0 +1,21 @@
+ja:
+  activerecord:
+    models:
+      schedule: スケジュール
+    attributes:
+      schedule:
+        title: タイトル
+        start_at: 開始日
+        end_at: 終了日
+        memo: メモ
+
+  errors:
+    messages:
+      blank: を入力してください
+      too_long: は%{count}文字以内で入力してください
+  time:
+    formats:
+      default: "%Y/%m/%d %H:%M"
+  date:
+    formats:
+      default: "%Y/%m/%d"  
